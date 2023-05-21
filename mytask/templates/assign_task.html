@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Assign Task - {{ task.title }}</h2>
+  <form method="post" action="{% url 'assign_task' task.id %}">
+    {% csrf_token %}
+    <select name="student">
+      {% for student in students %}
+        <option value="{{ student.id }}">{{ student.username }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Assign</button>
+  </form>
+{% endblock %}

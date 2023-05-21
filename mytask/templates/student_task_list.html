@@ -1,0 +1,36 @@
+<!-- student_task_list.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Student Task List</h1>
+  <table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for assignment in assignments %}
+        <tr>
+            <td>{{ assignment.task.title }}</td>
+            <td>{{ assignment.task.description }}</td>
+            <td>{{ assignment.task.deadline }}</td>
+            <td>
+                {% if assignment.student == request.user %}
+                    <form action="{% url 'mytask:return_task' assignment_id=assignment.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Return Task</button>
+                    </form>
+                {% else %}
+                    Assigned to: {{ assignment.student }}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

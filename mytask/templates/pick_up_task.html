@@ -1,0 +1,22 @@
+<!-- pick_up_task.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Pick Up Task</h1>
+  
+  {% if task %}
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.description }}</p>
+    <p>Deadline: {{ task.deadline }}</p>
+    
+    <form method="post" action="{% url 'mytask:return_task' task.id %}">
+      {% csrf_token %}
+      <input type="submit" value="Return Task">
+    </form>
+  {% else %}
+    <p>No task available to pick up.</p>
+  {% endif %}
+  
+  <a href="{% url 'mytask:task_list' %}">Back to Task List</a>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Task Deadline Passed</h2>
+  <p>The deadline for this task has already passed. It is no longer available for submission.</p>
+  <a class="btn btn-primary" href="{% url 'mytask:task_list' %}">Return to Task List</a>
+{% endblock %}

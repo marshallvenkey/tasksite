@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Submit Task - {{ assignment.task.title }}</h2>
+  <form method="post" action="{% url 'submit_task' assignment.id %}">
+    {% csrf_token %}
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}

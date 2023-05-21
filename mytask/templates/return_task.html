@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Return Task</h1>
+  <p>Assignment: {{ assignment.task.title }}</p>
+  <p>Submitted At: {{ assignment.submitted_at }}</p>
+  
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Return Task</button>
+  </form>
+{% endblock %}
